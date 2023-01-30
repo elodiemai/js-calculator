@@ -1,65 +1,68 @@
-/**
- * Declare a function named `calculatorModule`
- * this function will have two private variables declared inside of it.
- * @variable PRIVATE { Number } `memory`
- * @variable PRIVATE { Number } `total`
- * @return {object} `calculator` object that can be used
- */
+function calculatorModule() {
+    let _total = null;
+    let _memory = null;
 
+    function setTotal(number) {
+        _validate(number);
+        return _total = number;
+    }
 
-  /**
-   * sets the `total` to the number passed in
-   * @param  { Number } x
-   * @return { Number }    current total
-   */
+    function add(number) {
+        _validate(number);
+        _total += number;
+    }
 
+    function sub(number) {
+        _validate(number);
+        _total -= number;
+    }
 
-  /**
-   * Return the value of `total`
-   * @return { Number }
-   */
+    function multi(number) {
+        _validate(number);
+        _total *= number;
+    }
 
+    function div(number) {
+        _validate(number);
+        _total /= number;
+    }
 
-  /**
-   * Sums the value passed in with `total`
-   * @param { Number } x
-   */
+    function displayTotal() {
+        return _total;
+    }
 
+    function displayMemory() {
+        return _memory;
+    }
 
-  /**
-   * Subtracts the value passed in from `total`
-   * @param  { Number } x
-   */
+    function setMemory() {
+        _memory = _total;
+       return displayMemory();
+    }
 
+    function clearMemory() {
+        _memory = null;
+    }
 
-  /**
-   * Multiplies the value by `total`
-   * @param  { Number } x
-   */
+    function _validate(number) {
+        if (typeof number !== 'number') {
+            throw 'ERROR: Not a number';
+        }
+    }
 
+    return {
+        add: add,
+        sub: sub,
+        multi: multi,
+        div: div,
+        displayTotal: displayTotal,
+        setMemory: setMemory,
+        displayMemory: displayMemory,
+        setTotal: setTotal,
+        clearMemory: clearMemory
 
-  /**
-   * Divides the value passing in by `total`
-   * @param  { Number } x
-   */
+    }
 
+}
 
-  /**
-   * Return the value stored at `memory`
-   * @return { Number }
-   */
-
-
-  /**
-   * Stores the value of `total` to `memory`
-   */
-
-
-  /**
-   * Clear the value stored at `memory`
-   */
-
-  /**
-   * Validation
-   */
-
+let myCalculator = calculatorModule();
